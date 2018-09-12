@@ -1,0 +1,10 @@
+xz-5.0.5.tar.gz@26fec2c1e409f736e77a85e4ab314dc74987def0@https://tukaani.org/xz/xz-5.0.5.tar.gz
+boost_1_67_0.tar.gz@77e73c9fd7bf85b14067767b9e8fdc39b49ee0f2@https://dl.bintray.com/boostorg/release/1.67.0/source/boost_1_67_0.tar.gz
+oiio-1.8.11.tar.gz@1baca7cb3261e2b20aa3bd8ff6dfc5774b2efd50@https://github.com/OpenImageIO/oiio/archive/Release-1.8.11.tar.gz
+jpegsrc.v9b.tar.gz@15dd867617a88abd07573e06a86ace9bdb998ac2@http://www.ijg.org/files/jpegsrc.v9b.tar.gz
+libpng-1.6.16.tar.gz@50f3b31d013a31e2cac70db177094f6a7618b8be@ftp://ftp-osl.osuosl.org/pub/libpng/src/archive/gz/libpng16/libpng-1.6.16.tar.gz
+tiff-4.0.3.tar.gz@652e97b78f1444237a82cbcfe014310e776eb6f0@http://download.osgeo.org/libtiff/old/tiff-4.0.3.tar.gz
+ilmbase-2.2.0.tar.gz@70d864bc704f276942cb10479f2cb98646ce6ad4@http://download.savannah.nongnu.org/releases/openexr/ilmbase-2.2.0.tar.gz
+openexr-2.2.0.tar.gz@d09a68c4443b7a12a0484c073adaef348b44cb92@http://download.savannah.nongnu.org/releases/openexr/openexr-2.2.0.tar.gz
+embree-3.2.0.x86_64.macosx.tar.gz@194aeb98671f26b4830c02e5b401dfad3fe042bb@https://github.com/embree/embree/releases/download/v3.2.0/embree-3.2.0.x86_64.macosx.tar.gz
+tbb2018_20180312oss_mac.tgz@6e0229e5bd7d457c756ec6b31ab39cceb7f109a1@https://github.com/01org/tbb/releases/download/2018_U3/tbb2018_20180312oss_mac.tgz
