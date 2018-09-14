@@ -1,0 +1,6 @@
+#!/bin/bash
+
+mkdir -p macos
+./build_deps ${PWD}/macos ${PWD}/distfiles
+
+tar -czf MacDistFiles.tar.gz ./macos
