@@ -86,11 +86,6 @@ if [[ ! $STAGE ]] ; then
   fi
 fi
 
-PYTHON_LIB=`find $TARGET -name 'libpython*'`
-PYTHON_VARIANT=`if $(basename "$PYTHON_LIB" | grep -q 'm') ; then echo 'm' ; fi`
-PYTHON_INCLUDE=`find /usr/include -type d -name "python3*${PYTHON_VARIANT}" | awk '{ print length($0) " " $0; }' $file | sort -r -n | cut -d ' ' -f 2- | tail -n1 | sed s/'\n'//`
-echo " * Using Python library path: $PYTHON_LIB"
-echo " * Using Python include path: $PYTHON_INCLUDE"
 echo
 
 # STAGE 0.1 -- OpenMP
@@ -150,9 +145,18 @@ if [[ $STAGE && $STAGE < $NEXT ]] ; then
   PYVER=`python3 --version 2>&1 | cut -d' ' -f2 | cut -d '.' -f'1 2'`
   echo " * Compiling boost for python-${PYVER}"
   sleep 1
+  cat <<EOF >>tools/build/src/user-config.jam
+using python : ${PYVER}
+             : python3
+             : /usr/local/opt/python3/Frameworks/Python.framework/Versions/${PYVER}/include/python${PYVER}m
+             : /usr/local/opt/python3/Frameworks/Python.framework/Versions/${PYVER}/lib ;
+EOF
+
+  echo tools/build/src/user-config.jam
+
   if ! ./bootstrap.sh --without-icu --prefix=$TARGET/boost \
-  --with-python=/usr/bin/python${PYVER} \
-  --with-python-root=`python${PYVER} -c "import sys; print(sys.prefix)"` ; then
+       --with-python=python3 \
+       --with-python-root=/usr/local/opt/python/Frameworks/Python.framework/Versions/${PYVER} ; then
     echo " !!! Boost bootstrap failed"
     exit 1
   fi
@@ -160,7 +164,7 @@ if [[ $STAGE && $STAGE < $NEXT ]] ; then
     $CONFIGOPTS --prefix=$TARGET --layout=system --with-date_time --with-filesystem \
     --with-iostreams --with-locale --with-program_options --with-python --with-regex \
     --with-serialization --with-system --with-thread --with-chrono \
-    threading=multi link=static \
+    threading=multi link=static python=${PYVER} \
     release install ; then
     # Fix boost python lib name
     mv $TARGET/lib/libboost_python*.a $TARGET/lib/libboost_python.a
