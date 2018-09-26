@@ -96,7 +96,8 @@ if [[ $STAGE && $STAGE < $NEXT ]] ; then
   mkdir build && cd build
 
   echo " * Preparing OpenMP build"
-  if cmake -DLIBOMP_ENABLE_SHARED=OFF .. -DCMAKE_INSTALL_PREFIX=$TARGET ; then
+  if cmake -DLIBOMP_ENABLE_SHARED=ON \
+           -DCMAKE_INSTALL_PREFIX=$TARGET .. ; then
     echo " * OpenMP prepared successfully"
   else
     echo " !!! OpenMP cmake failed"
