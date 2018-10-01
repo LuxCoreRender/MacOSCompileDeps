@@ -145,19 +145,20 @@ if [[ $STAGE && $STAGE < $NEXT ]] ; then
 
   PYVER=`python3 --version 2>&1 | cut -d' ' -f2 | cut -d '.' -f'1 2'`
   echo " * Compiling boost for python-${PYVER}"
+  PYROOT=`python3 -c "import sys; print(sys.prefix)"`
   sleep 1
   cat <<EOF >>tools/build/src/user-config.jam
 using python : ${PYVER}
              : python3
-             : /usr/local/opt/python3/Frameworks/Python.framework/Versions/${PYVER}/include/python${PYVER}m
-             : /usr/local/opt/python3/Frameworks/Python.framework/Versions/${PYVER}/lib ;
+             : ${PYROOT}/include/python${PYVER}m
+             : ${PYROOT}/lib ;
 EOF
 
   echo tools/build/src/user-config.jam
 
   if ! ./bootstrap.sh --without-icu --prefix=$TARGET/boost \
        --with-python=python3 \
-       --with-python-root=/usr/local/opt/python/Frameworks/Python.framework/Versions/${PYVER} ; then
+       --with-python-root=${PYROOT} ;then
     echo " !!! Boost bootstrap failed"
     exit 1
   fi
@@ -169,6 +170,7 @@ EOF
     release install ; then
     # Fix boost python lib name
     mv $TARGET/lib/libboost_python*.a $TARGET/lib/libboost_python.a
+    mv $TARGET/lib/libboost_numpy*.a $TARGET/lib/libboost_numpy.a
     echo " * Boost compiled and installed successfully"
   else
     echo " !!! Boost compilation failed"
