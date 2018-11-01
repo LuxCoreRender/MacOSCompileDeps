@@ -6,5 +6,5 @@ libpng-1.6.16.tar.gz@50f3b31d013a31e2cac70db177094f6a7618b8be@ftp://ftp-osl.osuo
 tiff-4.0.3.tar.gz@652e97b78f1444237a82cbcfe014310e776eb6f0@http://download.osgeo.org/libtiff/old/tiff-4.0.3.tar.gz
 ilmbase-2.2.0.tar.gz@70d864bc704f276942cb10479f2cb98646ce6ad4@http://download.savannah.nongnu.org/releases/openexr/ilmbase-2.2.0.tar.gz
 openexr-2.2.0.tar.gz@d09a68c4443b7a12a0484c073adaef348b44cb92@http://download.savannah.nongnu.org/releases/openexr/openexr-2.2.0.tar.gz
-embree-3.2.0.x86_64.macosx.tar.gz@194aeb98671f26b4830c02e5b401dfad3fe042bb@https://github.com/embree/embree/releases/download/v3.2.0/embree-3.2.0.x86_64.macosx.tar.gz
+embree-3.2.4.x86_64.macosx.tar.gz@93c30dbee4515ea06a02e9e1dfe0411032e6eecb@https://github.com/embree/embree/releases/download/v3.2.4/embree-3.2.4.x86_64.macosx.tar.gz
 tbb2018_20180312oss_mac.tgz@6e0229e5bd7d457c756ec6b31ab39cceb7f109a1@https://github.com/01org/tbb/releases/download/2018_U3/tbb2018_20180312oss_mac.tgz
