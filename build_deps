@@ -65,6 +65,8 @@ STAGE=$4
 PAUSE=5
 
 # platform specs
+export CFLAGS="-w -mmmx -mno-sse3 -mno-ssse3 -msse -msse2 -O2 -pipe -mfpmath=sse -fPIC"
+export CXXFLAGS="-std=c++11 ${CFLAGS}"
 export LDFLAGS="-L${TARGET}/lib"
 export MAKEOPTS="-j"$(( `sysctl -n hw.physicalcpu` ))
 export TMP="$WORK"
@@ -143,6 +145,8 @@ NEXT=1.2
 if [[ $STAGE && $STAGE < $NEXT ]] ; then
   begin_stage boost boost*.tar.gz
 
+  cp -vf $DIST/numpy_patch.cpp libs/python/src/numpy/numpy.cpp
+
   PYVER=`python3 --version 2>&1 | cut -d' ' -f2 | cut -d '.' -f'1 2'`
   echo " * Compiling boost for python-${PYVER}"
   PYROOT=`python3 -c "import sys; print(sys.prefix)"`
@@ -162,7 +166,7 @@ EOF
     echo " !!! Boost bootstrap failed"
     exit 1
   fi
-  if ./b2 $MAKEOPTS -aq \
+  if ./b2 $MAKEOPTS -aq cflags="$CFLAGS" cxxflags="$CXXFLAGS" \
     $CONFIGOPTS --prefix=$TARGET --layout=system --with-date_time --with-filesystem \
     --with-iostreams --with-locale --with-program_options --with-python --with-regex \
     --with-serialization --with-system --with-thread --with-chrono \
