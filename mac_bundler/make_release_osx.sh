@@ -19,7 +19,10 @@ cd ..
 mkdir pyluxcore
 cp ../lib/pyluxcore* ./pyluxcore
 cd pyluxcore
-dylibbundler -cd -of -b -x pyluxcore.so -d ./lib -p @loader_path
+dylibbundler -cd -of -b -x ./pyluxcore.so -d ./ -p @loader_path/
+###denoise
+cp ../../../macos/bin/denoise .
+dylibbundler -x ./denoise -p @executable_path/lib
 cd ../../
 
 
