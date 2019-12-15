@@ -1,6 +1,8 @@
 #!/bin/bash
 #script to copile OSX bundle run it in the build dir
 
+rm -rf ./release_OSX 
+
 mkdir release_OSX
 cp -R ./mac_bundle/LuxCore.app ./release_OSX
 
@@ -22,7 +24,8 @@ cd pyluxcore
 dylibbundler -cd -of -b -x ./pyluxcore.so -d ./ -p @loader_path/
 ###denoise
 cp ../../../MacOSCompileDeps/macos/bin/denoise .
-dylibbundler -x ./denoise -p @executable_path/lib
+dylibbundler -cd -of -b -x ./denoise -d ./ -p @executable_path/
+chmod 755 ./denoise
 cd ../../
 
 
