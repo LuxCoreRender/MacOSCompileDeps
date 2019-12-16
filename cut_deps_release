@@ -3,4 +3,6 @@
 mkdir -p macos
 ./build_deps ${PWD}/macos ${PWD}/distfiles
 
+cp -R ${PWD}/mac_bundle/ ${PWD}/macos/mac_bundle/
+
 tar -czf MacDistFiles.tar.gz ./macos
