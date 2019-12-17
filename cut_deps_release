@@ -1,6 +1,10 @@
 #!/bin/bash
 
+eval "$(pyenv init -)"
+pyenv shell 3.7.4
+
 mkdir -p macos
+
 ./build_deps ${PWD}/macos ${PWD}/distfiles
 
 cp -R ${PWD}/mac_bundle/ ${PWD}/macos/mac_bundle/
