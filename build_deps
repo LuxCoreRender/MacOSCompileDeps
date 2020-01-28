@@ -41,6 +41,7 @@ if [[ ! ${2} ]] ; then
   echo
   echo "  Stage 0.1 - OpenMP"
   echo "  Stage 0.2 - lzma"
+  #echo "  Stage 0.3 - zlib"
   echo "  Stage 1.1 - boost"
   echo "  Stage 1.2 - jpeg"
   echo "  Stage 1.3 - tiff"
@@ -119,8 +120,8 @@ if [[ $STAGE && $STAGE < $NEXT ]] ; then
   complete_stage $NEXT
 fi
 
-# STAGE 0.1 -- lzma
-NEXT=0.4
+# STAGE 0.2 -- lzma
+NEXT=0.3
 if [[ $STAGE && $STAGE < $NEXT ]] ; then
   begin_stage lzma xz*.tar.gz
 
@@ -141,6 +142,30 @@ if [[ $STAGE && $STAGE < $NEXT ]] ; then
   complete_stage $NEXT
 fi
 
+# STAGE 0.3 -- zlib
+#NEXT=0.4
+#if [[ $STAGE && $STAGE < $NEXT ]] ; then
+#    begin_stage zlib zlib*.tar.gz
+
+#    if echo $TARGET | grep -q '\-64' ; then
+#        ZLIB_PLATFORM="--64"
+#    else
+#        ZLIB_PLATFORM=""
+#    fi
+#    if ! ./configure --static $ZLIB_PLATFORM --prefix=$TARGET ; then
+#	echo " !!! zlib configuration failed"
+#	exit 1
+#    fi
+#    sleep $PAUSE
+#    if make $MAKEOPTS && make install ; then
+#	echo " * zlib compiled and installed successfully"
+#    else
+#	echo " !!! zlib compilation failed"
+#	exit 1
+#    fi
+
+#    complete_stage $NEXT
+#fi
 # STAGE 1.1 -- Boost
 NEXT=1.2
 if [[ $STAGE && $STAGE < $NEXT ]] ; then
