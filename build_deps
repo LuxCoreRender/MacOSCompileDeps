@@ -350,7 +350,7 @@ fi
 # STAGE 4.1 -- Embree
 NEXT=4.2
 if [[ $STAGE && $STAGE < $NEXT ]] ; then
-  begin_stage Embree embree-*.tar.gz
+  begin_stage Embree embree-*.zip
 
   cp -v ${ROOT}/utils/embree-install.sh .
 
@@ -385,7 +385,7 @@ fi
 # STAGE 4.3 -- TBB
 NEXT=4.4
 if [[ $STAGE && $STAGE < $NEXT ]] ; then
-  begin_stage TBB tbb*_mac.tgz
+  begin_stage TBB tbb*-mac.tgz
 
   cp -v ${ROOT}/utils/tbb-install.sh .
 
