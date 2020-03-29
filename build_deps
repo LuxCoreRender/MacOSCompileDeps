@@ -68,7 +68,7 @@ PAUSE=5
 
 # platform specs
 export CFLAGS="-w -mmmx -mno-sse3 -mno-ssse3 -msse -msse2 -O2 -pipe -mfpmath=sse -fPIC"
-export CXXFLAGS="-std=c++11 ${CFLAGS}"
+export CXXFLAGS="-std=c++1z ${CFLAGS}"
 export LDFLAGS="-L${TARGET}/lib"
 export MAKEOPTS="-j"$(( `sysctl -n hw.physicalcpu` ))
 export TMP="$WORK"
@@ -277,6 +277,11 @@ fi
 NEXT=1.7
 if [[ $STAGE && $STAGE < $NEXT ]] ; then
   begin_stage ilmbase ilmbase*.tar.gz
+  
+  if ! ./bootstrap  ;then
+    echo " !!! IlmBase bootstrap failed"
+    exit 1
+  fi
 
   if ! ./configure --enable-static --disable-shared $CONFIGOPTS --prefix=$TARGET ; then
     echo " !!! ilmbase configuration failed"
@@ -297,9 +302,14 @@ fi
 NEXT=1.8
 if [[ $STAGE && $STAGE < $NEXT ]] ; then
   begin_stage openexr openexr*.tar.gz
+  
+  if ! ./bootstrap  ;then
+    echo " !!! OpenEXR bootstrap failed"
+    exit 1
+  fi
 
   if ! ./configure --enable-static --disable-shared \
-    --with-ilmbase-prefix=$TARGET $CONFIGOPTS --prefix=$TARGET ; then
+    --prefix=$TARGET ; then
     echo " !!! openexr configuration failed"
     exit 1
   fi
@@ -320,8 +330,6 @@ if [[ $STAGE && $STAGE < $NEXT ]] ; then
   begin_stage openimageio oiio*.tar.gz
 
   echo " * Patching OpenImageIO"
-  #cp -vf $DIST/oiio-1.8.11-plugin.cpp src/libutil/plugin.cpp
-  #cp -vf $DIST/oiio-1.8.11-externalpackages.cmake src/cmake/externalpackages.cmake
   if CMAKE_PREFIX_PATH=$TARGET make $MAKEOPTS BOOST_HOME=$TARGET \
     ILMBASE_HOME=$TARGET VERBOSE=0 USE_FFMPEG=0 \
     EMBEDPLUGINS=1 USE_OPENGL=0 USE_QT=0 USE_GIF=0 USE_OPENJPEG=0 USE_OPENSSL=0 \
