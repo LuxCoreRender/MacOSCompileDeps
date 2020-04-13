@@ -433,7 +433,7 @@ if [[ $STAGE && $STAGE < $NEXT ]] ; then
     exit 1
   fi
   install_name_tool -id @rpath/libOpenImageDenoise.0.dylib  $TARGET/lib/libOpenImageDenoise.0.dylib
-  install_name_tool -change $TARGET/lib/libOpenImageDenoise.0.dylib  @rpath/libOpenImageDenoise.1.1.0.dylib  $TARGET/bin/denoise 
+  install_name_tool -change $TARGET/lib/libOpenImageDenoise.0.dylib  @rpath/libOpenImageDenoise.1.2.0.dylib  $TARGET/bin/denoise 
   
   complete_stage $NEXT
 fi
