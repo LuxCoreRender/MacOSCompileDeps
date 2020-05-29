@@ -54,6 +54,7 @@ if [[ ! ${2} ]] ; then
   echo "  Stage 4.3 - TBB"
   echo "  Stage 4.4 - OpenCL"
   echo "  Stage 5.5 - OpenImageDenoise"
+  echo "  Stage 5.6 - CUDA"
   echo
   exit 1
 fi
@@ -420,7 +421,7 @@ if [[ $STAGE && $STAGE < $NEXT ]] ; then
 fi
 
 # STAGE 5.5 -- OpenImageDenoise
-NEXT=6
+NEXT=5.6
 if [[ $STAGE && $STAGE < $NEXT ]] ; then
   begin_stage OpenImageDenoise oidn*.tar.gz
 
@@ -436,6 +437,17 @@ if [[ $STAGE && $STAGE < $NEXT ]] ; then
   install_name_tool -change $TARGET/lib/libOpenImageDenoise.0.dylib  @rpath/libOpenImageDenoise.1.2.0.dylib  $TARGET/bin/denoise 
   
   complete_stage $NEXT
+fi
+
+# STAGE 5.6 -- CUDA
+NEXT=5.6
+if [[ $STAGE && $STAGE < $NEXT ]] ; then
+  if cp -R ${DIST}/CUDA/* ${TARGET}/lib ; then
+      echo " * CUDA libraries installed successfully"
+    else
+      echo " !!! CUDA libraries installation failed"
+			exit 1
+    fi
 fi
 
 #mkdir -p ${TARGET}/lib/Release
