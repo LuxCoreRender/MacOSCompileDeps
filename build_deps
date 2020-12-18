@@ -117,7 +117,7 @@ if [[ $STAGE && $STAGE < $NEXT ]] ; then
     echo " !!! OpenMP build failed"
     exit 1
   fi
-  
+
   complete_stage $NEXT
 fi
 
@@ -200,8 +200,8 @@ EOF
     threading=multi link=static python=${PYVER} \
     release install ; then
     # Fix boost python lib name
-    mv $TARGET/lib/libboost_python*.a $TARGET/lib/libboost_python.a
-    mv $TARGET/lib/libboost_numpy*.a $TARGET/lib/libboost_numpy.a
+    #mv $TARGET/lib/libboost_python*.a $TARGET/lib/libboost_python.a
+    #mv $TARGET/lib/libboost_numpy*.a $TARGET/lib/libboost_numpy.a
     echo " * Boost compiled and installed successfully"
   else
     echo " !!! Boost compilation failed"
@@ -248,7 +248,7 @@ if [[ $STAGE && $STAGE < $NEXT ]] ; then
     echo " !!! TIFF compilation failed"
     exit 1
   fi
-  
+
   install_name_tool -id @rpath/libtiff.5.dylib  $TARGET/lib/libtiff.5.dylib
 
   complete_stage $NEXT
@@ -278,7 +278,7 @@ fi
 NEXT=1.7
 if [[ $STAGE && $STAGE < $NEXT ]] ; then
   begin_stage ilmbase ilmbase*.tar.gz
-  
+
   if ! ./bootstrap  ;then
     echo " !!! IlmBase bootstrap failed"
     exit 1
@@ -303,7 +303,7 @@ fi
 NEXT=1.8
 if [[ $STAGE && $STAGE < $NEXT ]] ; then
   begin_stage openexr openexr*.tar.gz
-  
+
   if ! ./bootstrap  ;then
     echo " !!! OpenEXR bootstrap failed"
     exit 1
@@ -352,7 +352,7 @@ if [[ $STAGE && $STAGE < $NEXT ]] ; then
     fi
 
     install_name_tool -change $TARGET/lib/libtiff.5.dylib @rpath/libtiff.5.dylib $TARGET/lib/libOpenImageIO.1.8.dylib
-    
+
     complete_stage $NEXT
 fi
 
@@ -434,8 +434,8 @@ if [[ $STAGE && $STAGE < $NEXT ]] ; then
     exit 1
   fi
   install_name_tool -id @rpath/libOpenImageDenoise.0.dylib  $TARGET/lib/libOpenImageDenoise.0.dylib
-  install_name_tool -change $TARGET/lib/libOpenImageDenoise.0.dylib  @rpath/libOpenImageDenoise.1.2.1.dylib  $TARGET/bin/oidnDenoise 
-  
+  install_name_tool -change $TARGET/lib/libOpenImageDenoise.0.dylib  @rpath/libOpenImageDenoise.1.2.1.dylib  $TARGET/bin/oidnDenoise
+
   complete_stage $NEXT
 fi
 
@@ -451,5 +451,3 @@ if [[ $STAGE && $STAGE < $NEXT ]] ; then
 fi
 
 #mkdir -p ${TARGET}/lib/Release
-
-
