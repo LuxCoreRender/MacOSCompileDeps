@@ -181,7 +181,7 @@ if [[ $STAGE && $STAGE < $NEXT ]] ; then
   cat <<EOF >>tools/build/src/user-config.jam
 using python : ${PYVER}
              : python3
-             : ${PYROOT}/include/python${PYVER}
+             : ${PYROOT}/include/python${PYVER}m
              : ${PYROOT}/lib ;
 EOF
 
