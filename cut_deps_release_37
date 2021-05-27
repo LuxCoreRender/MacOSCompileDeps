@@ -1,12 +1,12 @@
 #!/bin/bash
 
 eval "$(pyenv init -)"
-pyenv shell 3.9.2
+pyenv shell 3.7.7
 
 mkdir -p macos
 
-./build_deps ${PWD}/macos ${PWD}/distfiles
+./build_deps_37 ${PWD}/macos ${PWD}/distfiles
 
 cp -R ${PWD}/mac_bundle/ ${PWD}/macos/mac_bundle/
 
-tar -czf MacDistFiles.tar.gz ./macos
+tar -czf MacDistFiles_37.tar.gz ./macos
