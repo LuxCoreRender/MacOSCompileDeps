@@ -1,0 +1,12 @@
+#!/bin/bash
+
+eval "$(pyenv init -)"
+pyenv shell 3.9.2
+
+mkdir -p macos_arm64
+
+./build_deps_39_arm64 ${PWD}/macos_arm64 ${PWD}/distfiles
+
+cp -R ${PWD}/mac_bundle/ ${PWD}/macos_arm64/mac_bundle/
+
+tar -czf MacDistFiles_39_arm64.tar.gz ./macos_arm64
