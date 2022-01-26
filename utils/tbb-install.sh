@@ -7,3 +7,4 @@ mkdir -p $INCLUDE_INSTALL_DIR
 mkdir -p $LIBRARY_INSTALL_DIR
 
 cp -vr include/serial include/tbb $INCLUDE_INSTALL_DIR
+cp -vr lib/ $LIBRARY_INSTALL_DIR

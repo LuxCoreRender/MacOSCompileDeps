@@ -1,0 +1,12 @@
+#!/bin/bash
+
+eval "$(pyenv init -)"
+pyenv shell 3.9.2
+
+mkdir -p macos_intel
+
+./build_deps_39 ${PWD}/macos_intel ${PWD}/distfiles
+
+cp -R ${PWD}/mac_bundle/ ${PWD}/macos_intel/mac_bundle/
+
+tar -czf MacDistFiles_39_intel.tar.gz ./macos_intel

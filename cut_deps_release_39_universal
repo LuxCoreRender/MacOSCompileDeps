@@ -1,0 +1,12 @@
+#!/bin/bash
+
+eval "$(pyenv init -)"
+pyenv shell 3.9.2
+
+mkdir -p macos_uni
+
+./build_deps_39_universal ${PWD}/macos_uni ${PWD}/distfiles
+
+cp -R ${PWD}/mac_bundle/ ${PWD}/macos_uni/mac_bundle/
+
+tar -czf MacDistFiles_39_universal.tar.gz ./macos_uni
