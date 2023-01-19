@@ -8,8 +8,8 @@ To use pyenv do the following:
 ```
 brew install pyenv
 pyenv init
-env PYTHON_CONFIGURE_OPTS="--enable-framework" pyenv install 3.9.2
-pip install numpy==1.19.5
+env PYTHON_CONFIGURE_OPTS="--enable-framework" pyenv install 3.9.7
+pip install numpy==1.21.2
 pip install pillow
 pip install pyside2
 ...
