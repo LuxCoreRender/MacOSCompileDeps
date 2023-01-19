@@ -12,10 +12,10 @@ env PYTHON_CONFIGURE_OPTS="--enable-framework" pyenv install 3.9.2
 pip install numpy==1.19.5
 pip install pillow
 pip install pyside2
-
+...
 
 install build tools
-```
+...
 brew install cmake
 brew install autoconf
 brew install automake
