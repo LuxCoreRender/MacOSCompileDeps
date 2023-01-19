@@ -1,0 +1,12 @@
+#!/bin/bash
+
+eval "$(pyenv init -)"
+pyenv shell 3.10.2
+
+mkdir -p macos
+
+./build_deps_310_intel_static ${PWD}/macos ${PWD}/distfiles
+
+cp -R ${PWD}/mac_bundle/ ${PWD}/macos/mac_bundle/
+
+tar -czf MacDistFiles_310_intel_static.tar.gz ./macos
