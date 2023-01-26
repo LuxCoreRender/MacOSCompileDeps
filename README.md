@@ -8,8 +8,8 @@ To use pyenv do the following:
 ```
 brew install pyenv
 pyenv init
-env PYTHON_CONFIGURE_OPTS="--enable-framework" pyenv install 3.9.7
-pip install numpy==1.21.2
+env PYTHON_CONFIGURE_OPTS="--enable-framework" pyenv install 3.10.2
+pip install numpy==1.22.0
 pip install pillow
 pip install pyside2
 ...
@@ -23,7 +23,7 @@ brew install ispc
 ...
 
 
-compile dependencies 
+compile dependencies
 ...
 
 ./cut_deps_release_310_intel_static.sh
